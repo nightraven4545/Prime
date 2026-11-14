@@ -101,3 +101,20 @@ def test_bank_a_runs_and_adds_up():
     assert r["npv"] == pytest.approx(r["use_cases"]["npv"].sum() + bc.npv(a.rate, enabler_flows))
     t = r["tornado"]
     assert (t["upside"] >= t["downside"]).all()
+
+
+# --- memo ---
+
+def test_committed_memo_matches_model_output():
+    from pathlib import Path
+    from prime import narrative
+    q, bank, ucs = prime.load()
+    memo = narrative.build_memo(prime.run(q, bank, ucs), bank, q)
+    assert memo == (Path(prime.DATA).parent / "docs" / "memo.md").read_text()
+
+
+def test_number_guard_catches_invented_figures():
+    from prime import narrative
+    draft = "NPV is ₹626 crore over 5 years."
+    assert narrative.numbers("Over 5 years NPV is ₹626 crore.") <= narrative.numbers(draft)
+    assert not narrative.numbers("NPV is ₹700 crore over 5 years.") <= narrative.numbers(draft)

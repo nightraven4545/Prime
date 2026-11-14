@@ -8,6 +8,7 @@ MILESTONE = {
     2: "Build starts once the blocking enabler is in place; live by month 24",
     3: "Design in year 2; live in year 3",
 }
+HOLD = "Hold: negative NPV in this horizon; re-run the case once the foundations are live"
 
 
 def enablers(questionnaire: dict, scores: pd.Series) -> pd.DataFrame:
@@ -27,6 +28,7 @@ def build(table: pd.DataFrame, enabler_table: pd.DataFrame, questionnaire: dict)
         target = f"{uc['impact_base']:.1%} " + {
             "cost": "lower", "risk": "lower", "revenue": "higher"}[uc["lever"]]
         rows.append({"wave": uc["wave"], "item": uc["name"], "type": "Use case",
-                     "start_year": uc["wave"] - 1, "milestone": MILESTONE[uc["wave"]],
-                     "measure": f"{uc['base'].replace('_', ' ')} {target} at full ramp"})
+                     "start_year": uc["wave"] - 1,
+                     "milestone": MILESTONE[uc["wave"]] if uc["npv"] > 0 else HOLD,
+                     "measure": f"{uc['base'].replace('_', ' ').capitalize().replace('Sme', 'SME')} {target} at full ramp"})
     return pd.DataFrame(rows)
