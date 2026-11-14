@@ -1,0 +1,48 @@
+# Bank A is fictional. Every figure here is an illustrative assumption for a
+# mid-sized Indian private-sector bank, not data about any real institution.
+name: Bank A
+description: Fictional mid-sized Indian private-sector bank
+currency: INR crore
+
+# Annual baselines that the use cases act on (INR crore).
+baseline:
+  total_income: 12000          # net interest income + other income
+  operating_expenses: 5800
+  operations_cost: 1100        # back-office processing, branches' service work
+  contact_centre_cost: 320
+  tech_dev_cost: 450           # in-house and contracted software engineering
+  third_party_tech_spend: 520  # software licences, cloud, IT services
+  compliance_cost: 260         # KYC, AML, regulatory reporting
+  collections_cost: 240
+  marketing_spend: 380
+  credit_cost: 1400            # provisions for loan losses
+  fraud_loss: 70
+  retail_income: 4200
+  sme_income: 1900
+
+# Questionnaire answers, 1 (ad hoc) to 5 (leading).
+responses:
+  s1: 3
+  s2: 2
+  s3: 3
+  s4: 2
+  t1: 2
+  t2: 2
+  t3: 3
+  t4: 2
+  o1: 2
+  o2: 3
+  o3: 2
+  o4: 2
+  k1: 3
+  k2: 4
+  k3: 3
+  k4: 3
+  d1: 2
+  d2: 2
+  d3: 1
+  d4: 2
+  a1: 2
+  a2: 2
+  a3: 2
+  a4: 1
