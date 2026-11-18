@@ -1,0 +1,58 @@
+# Tech & AI maturity questionnaire. Each question is answered 1 (ad hoc) to 5 (leading).
+# Each dimension carries the enabler that is triggered when its score falls below the gate.
+scale:
+  1: Ad hoc
+  2: Emerging
+  3: Defined
+  4: Scaled
+  5: Leading
+
+dimensions:
+  strategy:
+    name: Strategy and value
+    enabler: {name: AI value office with a business-owned use-case backlog, one_time_cr: 8, run_cr: 4}
+    questions:
+      s1: AI priorities are tied to named P&L lines with an accountable business owner
+      s2: Use cases are funded against a business case and tracked after launch
+      s3: The board reviews AI value and risk at least twice a year
+      s4: Investment is concentrated on a few domains rather than spread across pilots
+  talent:
+    name: Talent
+    enabler: {name: AI academy and a hiring plan for data and ML engineers, one_time_cr: 12, run_cr: 10}
+    questions:
+      t1: Data and ML engineering roles are filled in-house rather than through vendors
+      t2: Business staff are trained to work with AI tools in their daily work
+      t3: There is a defined career path and pay band for technical specialists
+      t4: Attrition among engineers is at or below the industry level
+  operating_model:
+    name: Operating model
+    enabler: {name: Cross-functional product teams for the priority domains, one_time_cr: 10, run_cr: 6}
+    questions:
+      o1: Business, technology and risk staff work in the same persistent teams
+      o2: Teams release to production at least monthly
+      o3: Model risk and compliance reviews run in parallel with development
+      o4: Funding is allocated to products, not to one-off projects
+  technology:
+    name: Technology
+    enabler: {name: Cloud landing zone, API layer over core banking and an MLOps pipeline, one_time_cr: 45, run_cr: 15}
+    questions:
+      k1: Core banking data and functions are reachable through documented APIs
+      k2: Workloads that need elastic compute can run on cloud
+      k3: Models are deployed and monitored through an automated pipeline
+      k4: A governed platform exists for using large language models
+  data:
+    name: Data
+    enabler: {name: Customer and credit data products with named owners and quality checks, one_time_cr: 35, run_cr: 12}
+    questions:
+      d1: There is a single customer view across products
+      d2: Critical data has a named owner and measured quality
+      d3: Unstructured data (documents, calls, chats) is captured and searchable
+      d4: Teams can find and get access to data within days, not months
+  adoption:
+    name: Adoption and scaling
+    enabler: {name: Change-management playbook with adoption targets in line managers' scorecards, one_time_cr: 6, run_cr: 5}
+    questions:
+      a1: Past AI pilots have moved to production at full scale
+      a2: Frontline usage of deployed tools is measured
+      a3: Processes are redesigned around the tool rather than the tool added on top
+      a4: Managers' targets include adoption and realized benefit

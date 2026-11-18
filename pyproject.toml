@@ -3,14 +3,18 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "prime"
+name = "ai-value-diagnostic"
 version = "0.2.0"
-description = "Filings analyst agent with a measured evaluation harness"
+description = "AI value diagnostic for banks: maturity assessment, use-case prioritisation, business case and roadmap, with tested checks for trustworthy AI answers"
 requires-python = ">=3.12"
-dependencies = ["pydantic>=2.7", "pydantic-settings>=2.3", "numpy>=1.26", "sqlglot>=25"]
+keywords = ["ai strategy", "ai maturity assessment", "business case", "llm evaluation", "banking", "streamlit"]
+dependencies = [
+  "pydantic>=2.7", "numpy>=1.26", "sqlglot>=25",
+  "pandas>=2.2", "pyyaml>=6", "plotly>=5.20", "streamlit>=1.40",
+]
 
 [dependency-groups]
-dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11", "pandas-stubs", "types-PyYAML"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -25,7 +29,25 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM"]
 
+[tool.ruff.lint.per-file-ignores]
+# Prose template: line breaks inside the f-strings would change the generated text.
+"src/prime/narrative.py" = ["E501"]
+
 [tool.mypy]
 python_version = "3.12"
 strict = true
 files = ["src"]
+
+# The pandas-based analysis layer is checked, but not held to strict annotation rules.
+[[tool.mypy.overrides]]
+module = ["prime.diagnostic", "prime.prioritize", "prime.business_case", "prime.roadmap", "prime.narrative", "prime.pipeline", "prime.ui"]
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+disallow_untyped_calls = false
+disallow_any_generics = false
+warn_return_any = false
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["plotly", "plotly.*"]
+ignore_missing_imports = true
